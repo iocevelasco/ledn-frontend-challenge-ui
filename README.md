@@ -1,9 +1,14 @@
 <div align='center'>
-  <img width='100%' src='https://blog.ledn.io/hs-fs/hubfs/Ledn_Animation_short-1.gif?width=1017&name=Ledn_Animation_short-1.gif'/>
-  <br><br>
-  <h3>Where digital assets come to life</h3>
-  <br><br>
   <h1>Frontend technical challenge</h1>
+  <h3>Frontend Ioce Velasco</h3>
+  <p>Hello there! From a galaxy far, far away, as a Star Wars fan I really enjoyed this test, thanks a lot.</p>
+  <p>Recording</p>
+  <img width='100%' src='./src//assets/video.gif'/>
+  __________________________________________
+  <p>screenshot</p>
+  <img width='100%' src='./src/assets/screenshot.png'/>
+  <br><br>
+  <br><br>
 </div>
 
 ## Introduction

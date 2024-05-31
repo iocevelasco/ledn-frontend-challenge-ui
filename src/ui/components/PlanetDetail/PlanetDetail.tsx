@@ -38,15 +38,15 @@ const PlanetDetail: React.FC<PlanetDetailProps> = ({ planetId }) => {
       <Info>Terrain: {planet?.terrain}</Info>
       <Info>Population: {planet?.population}</Info>
 
-      <FilterSelect
-        onChange={(e) => setFilterCurrency(e.target.value)}
-        value={filterCurrency}
-      >
-        <option value="">All</option>
-        <option value="GCS">Galactic Credit Standard</option>
-        <option value="ICS">Imperial Crown Standard</option>
-      </FilterSelect>
       <TransactionItemWrapper>
+        <FilterSelect
+          onChange={(e) => setFilterCurrency(e.target.value)}
+          value={filterCurrency}
+        >
+          <option value="">All</option>
+          <option value="GCS">Galactic Credit Standard</option>
+          <option value="ICS">Imperial Crown Standard</option>
+        </FilterSelect>
         <TransactionsTitle>Transactions</TransactionsTitle>
         <TransactionList>
           {filteredTransactions?.map((transaction) => (

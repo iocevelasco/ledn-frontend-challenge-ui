@@ -4,7 +4,7 @@ import backgroundImage from 'assets/background.jpg';
 
 export const Container = styled.div<{ theme: ThemeType }>`
   padding: 16px;
-  background: url(${backgroundImage}) no-repeat center center fixed;
+  background: url(${backgroundImage}) no-repeat 45% 60% fixed;
   border: ${({ theme }) => `1px solid ${theme.colors.starWars.yellow}`};
   border-radius: 2rem;
   flex: 1;
@@ -41,12 +41,12 @@ export const TransactionItem = styled.li`
   border:${({ theme }) => `1px solid  ${theme.colors.background}`};
 `;
 
-export const FilterSelect = styled.select`
+export const FilterSelect = styled.select<{theme: ThemeType}>`
   padding: 10px;
   margin-top: 10px;
-  background: ${({ theme }) => theme.colors.background};
-  color: ${({ theme }) => theme.colors.text};
-  border:${({ theme }) => `1px solid  ${theme.colors.accent}`};
+  background: ${({ theme }) => theme.colors.common.black};
+  color: ${({ theme }) => theme.colors.primary.main};
+  border:${({ theme }) => `1px solid  ${theme.colors.primary.main}`};
   border-radius: 4px;
 `;
 
