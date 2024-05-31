@@ -1,16 +1,17 @@
-import { QueryClient, QueryClientProvider } from 'react-query';
-import DataExample from './DataExample';
+import { QueryClient, QueryClientProvider } from "react-query";
+import { starWarsTheme } from "./utils/theme";
+import { ThemeProvider } from "styled-components";
+import Home from "pages/Home/Home";
+import "App.css";
 
 const App = () => {
   const queryClient = new QueryClient();
 
-  return  (
+  return (
     <QueryClientProvider client={queryClient}>
-      <h1 style={{
-        width: "100%",
-        textAlign: 'center',
-      }}>Ledn frontend challenge</h1>
-      <DataExample />
+      <ThemeProvider theme={starWarsTheme}>
+        <Home />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };

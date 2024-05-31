@@ -1,13 +1,16 @@
 import axios from "axios";
 import { QueryFunctionContext, useQuery } from 'react-query';
+import { Planet } from "utils/types";
 
 async function fetchPlanetList() {
-  return axios.get("/api/planets");
+  const response = await axios.get("/api/planets");
+  return response.data;
 }
 
 async function fetchPlanetDetail({ queryKey }: QueryFunctionContext) {
   const [, id] = queryKey;
-  return axios.get(`/api/planets/${id}`);
+  const response = await axios.get(`/api/planets/${id}`);
+  return response.data;
 }
 
 
@@ -17,7 +20,7 @@ export function usePlanetList() {
     queryFn: fetchPlanetList,
   });
 
-  return { data: data?.data.planets, isLoading, isError };
+  return { data: data?.planets, isLoading, isError } as { data: Planet[] | undefined, isLoading: boolean, isError: boolean };
 }
 
 export function usePlanetDetail(id: string) {
@@ -26,6 +29,6 @@ export function usePlanetDetail(id: string) {
     queryFn: fetchPlanetDetail,
   });
 
-  return { data: data?.data.planet, isLoading, isError };
+  return { data: data?.planet, isLoading, isError } as { data: Planet | undefined, isLoading: boolean, isError: boolean };
 }
 

@@ -1,51 +1,37 @@
-import React, { useState } from "react";
-import {
-  Container,
-  PlanetListContainer,
-  PlanetItem,
-  SearchInput,
-  SortButton,
-} from "./PlanetList.style";
-import { Planet } from "../../../utils/types";
-import { usePlanetDetail, usePlanetList } from "../../../data/queries";
+import { Container, PlanetListContainer, PlanetItem } from "./PlanetList.style";
+import { Planet } from "utils/types";
+import { usePlanetList } from "data/queries";
 
 interface PlanetListProps {
-  onSelectPlanet: (planet: Planet) => void;
+  setPlanetId: (id: string) => void;
+  planetList: Planet[];
+  selectedPlanetId: string;
 }
 
-const PlanetList: React.FC<PlanetListProps> = ({ onSelectPlanet }) => {
-  const [searchTerm, setSearchTerm] = useState<string>("");
-  const [sortAsc, setSortAsc] = useState<boolean>(true);
-  const { data: planets, isLoading, isError } = usePlanetList();
+const PlanetList: React.FC<PlanetListProps> = ({
+  setPlanetId,
+  planetList,
+  selectedPlanetId,
+}) => {
+  const { isLoading, isError } = usePlanetList();
 
   if (isLoading) return <div>Loading...</div>;
 
   if (isError) return <div>Error</div>;
 
-  const filteredPlanets = planets
-    ?.filter((planet) =>
-      planet.name.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) =>
-      sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
-    );
+  if (planetList.length === 0) {
+    return <div>No planets found</div>;
+  }
 
   return (
     <Container>
-      <div>
-        <SearchInput
-          type="text"
-          placeholder="Search for a planet..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-        />
-        <SortButton onClick={() => setSortAsc(!sortAsc)}>
-          Sort {sortAsc ? "Descending" : "Ascending"}
-        </SortButton>
-      </div>
       <PlanetListContainer>
-        {filteredPlanets?.map((planet) => (
-          <PlanetItem key={planet.id} onClick={() => onSelectPlanet(planet)}>
+        {planetList.map((planet) => (
+          <PlanetItem
+            isSelected={planet.id === selectedPlanetId}
+            key={planet.id}
+            onClick={() => setPlanetId(planet.id)}
+          >
             {planet.name}
           </PlanetItem>
         ))}
